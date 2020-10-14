@@ -10,8 +10,13 @@ import Login from './components/Login/Login';
 import Book from './components/Book/Book';
 import Header from './components/Header/Header';
 
+export const userContext = createContext();
+
 function App() {
+  const [loggedInUser, setLoggedInUser] = useState({});
   return (
+    <userContext.Provider value = {[loggedInUser, setLoggedInUser]}>
+      <p>Name: {loggedInUser.name}</p>
       <Router>
           <Header/>
           <Switch>
@@ -29,6 +34,7 @@ function App() {
             </Route>
           </Switch>
       </Router>
+      </userContext.Provider>
   );
 }
 
